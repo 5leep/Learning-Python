@@ -1,22 +1,17 @@
-from random import randint
 
-# Define your functions
+
 def coffee_bot():
   names=["James", "Michael", "Brian", "Andrew", "Name"]
-  print("""
-         o      
-    \   /
- ,-.'---`.__ 
-((j`=====',-'
- `-\     /
-    `-=-'     CoffeeBot.py
-  """)
   print("\nWelcome to the  cafe! :)")
+  cost = 0.00
+  cost = get_size(cost)
   size = get_size()
   drink_type = get_drink_type()
-  print("\n\nAlright, there's a {} {} coming right up! ;)\n".format(size, drink_type))
-  name = input("Can I get your name please?\n\n   You're name > ")
-  print("\nThank you " + name + "! You're product is just coming.\n")
+  cup = get_cup()
+  print("\nAlright, there's a {} {} coming right up, in a {} cup!".format(size, drink_type, cup))
+  name = input("\nCan I get your name please?\n\n> ")
+  print("\nThank you " + name + "! Your {} {} is just coming, which will be a total of £{}".format(size, drink_type, cost))
+  print("\nFeel free to take a seat while we get that for you\n;)\n")
   print("""
                ;,'
      _o_    ;:;'
@@ -26,17 +21,30 @@ def coffee_bot():
     `-=-'     CoffeeBot.py
   """)
 
-def get_size():
+def get_size(cost):
+  cost = float
   res = input("\nWhat size coffee would you like?\n\n[a] Small \n[b] Medium \n[c] Large \n\n> ")
   if res == "a":
-    return "Small"
+    return "Small" and cost == 1.50
   if res == "b":
-    return "Medium"
+    return "Medium" and cost == 2.00
   if res == "c":
-    return "Large"
+    return "Large" and cost == 2.25
   else:
     print_message()
     return get_size()
+
+def get_cup():
+  res = input("\nWhat cup type would you prefer??\n\n[a] Plastic \n[b] Reusable \n[c] Plastic bag \n\n> ")
+  if res == "a":
+    return "Plastic"
+  if res == "b":
+    return "Reusable"
+  if res == "c":
+    return "Wooden"
+  else:
+    print_message()
+    return get_cup()
 
 def print_message():
   print ("\nI'm sorry, I did not understand your selection. Please enter the corresponding letter for your response")
@@ -44,9 +52,9 @@ def print_message():
 def get_drink_type():
   res = input("What type of drink would you like?\n\n[a] Brewed Coffee \n[b] Mocha \n[c] Latte \n\n")
   if res == "a":
-    return "Brewed Coffee\n"
+    return "Brewed Coffee"
   elif res == "b":
-    return "Mocha\n"
+    return "Mocha"
   elif res == "c":
     return order_latte()
   else:
@@ -64,7 +72,6 @@ def order_latte():
   else:
     print_message()
     return order_latte()
-
 
 # Call coffee_bot()!
 coffee_bot()
